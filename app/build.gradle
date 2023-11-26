@@ -19,6 +19,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", BASE_URL)
+        buildConfigField("String", "TYPE_KEY", TYPE_KEY)
+        buildConfigField("String", "TYPE_VALUE", TYPE_VALUE)
+        buildConfigField("String", "AUTH_KEY", AUTH_KEY)
+        buildConfigField("String", "AUTH_VALUE", AUTH_VALUE)
     }
 
     buildTypes {
@@ -33,6 +38,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '17'
+    }
+    viewBinding {
+        enabled true
     }
 }
 
@@ -59,12 +67,20 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
     // Hilt
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation "com.google.dagger:hilt-android:2.48"
+    kapt "com.google.dagger:hilt-compiler:2.48"
 
     // live data & view model
     implementation "android.arch.lifecycle:runtime:1.1.1"
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
 }
