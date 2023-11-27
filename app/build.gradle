@@ -20,6 +20,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", BASE_URL)
+        buildConfigField("String", "PHOTO_URL", PHOTO_URL)
         buildConfigField("String", "TYPE_KEY", TYPE_KEY)
         buildConfigField("String", "TYPE_VALUE", TYPE_VALUE)
         buildConfigField("String", "AUTH_KEY", AUTH_KEY)
@@ -73,8 +74,8 @@ dependencies {
     // live data & view model
     implementation "android.arch.lifecycle:runtime:1.1.1"
 
-    // glide
-    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    // coil
+    implementation "io.coil-kt:coil:2.5.0"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -83,4 +84,8 @@ dependencies {
     // OkHttp
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+
+    // rating bar
+    implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
+
 }
