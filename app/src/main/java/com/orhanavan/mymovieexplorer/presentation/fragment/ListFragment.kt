@@ -5,21 +5,24 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hoc081098.viewbindingdelegate.viewBinding
 import com.orhanavan.mymovieexplorer.R
+import com.orhanavan.mymovieexplorer.data.model.Movie
 import com.orhanavan.mymovieexplorer.databinding.FragmentListBinding
+import com.orhanavan.mymovieexplorer.presentation.adapter.ItemClickListener
 import com.orhanavan.mymovieexplorer.presentation.adapter.MovieListAdapter
 import com.orhanavan.mymovieexplorer.presentation.adapter.SingleItemDecoration
 import com.orhanavan.mymovieexplorer.presentation.viewmodel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ListFragment : Fragment(R.layout.fragment_list) {
+class ListFragment : Fragment(R.layout.fragment_list), ItemClickListener {
 
     private val viewModel: ListViewModel by viewModels()
     private val binding by viewBinding<FragmentListBinding>()
-    private val movieListAdapter = MovieListAdapter()
+    private val movieListAdapter = MovieListAdapter(this)
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,5 +47,10 @@ class ListFragment : Fragment(R.layout.fragment_list) {
                 movieListAdapter.notifyDataSetChanged()
             }
         }
+    }
+
+    override fun onMovieClicked(movie: Movie) {
+        val action = ListFragmentDirections.actionListFragmentToDetailFragment(movie)
+        findNavController().navigate(action)
     }
 }

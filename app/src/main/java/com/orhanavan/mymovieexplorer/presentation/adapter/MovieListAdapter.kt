@@ -14,6 +14,7 @@ import com.orhanavan.mymovieexplorer.util.formatRating
 import com.orhanavan.mymovieexplorer.util.formatStar
 
 class MovieListAdapter(
+    val listener: ItemClickListener,
     var itemList: List<Movie> = emptyList(),
     var genreList: List<Genre> = emptyList()
 ): RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>() {
@@ -46,10 +47,17 @@ class MovieListAdapter(
         holder.binding.movieRating.text = item.voteAverage.formatRating()
         holder.binding.movieRatingBar.rating = item.voteAverage.formatStar()
         holder.binding.movieGenres.text = getGenreNamesByIds(item.genreIds)
+        holder.itemView.setOnClickListener {
+            listener.onMovieClicked(item)
+        }
     }
 
     private fun getGenreNamesByIds(ids: List<Int>): String {
         val selectedGenres = genreList.filter { it.id in ids }
         return selectedGenres.joinToString(separator = ", ") { it.name }
     }
+}
+
+interface ItemClickListener {
+    fun onMovieClicked(movie: Movie)
 }

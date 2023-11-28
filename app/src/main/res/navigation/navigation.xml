@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.orhanavan.mymovieexplorer.presentation.fragment.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment" >
+        <argument
+            android:name="movie"
+            app:argType="com.orhanavan.mymovieexplorer.data.model.Movie" />
+    </fragment>
 </navigation>

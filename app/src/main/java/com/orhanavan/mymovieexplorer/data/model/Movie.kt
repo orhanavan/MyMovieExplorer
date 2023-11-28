@@ -1,7 +1,10 @@
 package com.orhanavan.mymovieexplorer.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Movie(
     val adult: Boolean,
     @SerializedName("backdrop_path")
@@ -25,4 +28,4 @@ data class Movie(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int
-)
+) : Parcelable
