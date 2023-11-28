@@ -28,7 +28,7 @@ class ListFragment : Fragment(R.layout.fragment_list), ItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerView.apply {
+        with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(requireActivity())
             adapter = movieListAdapter
             addItemDecoration(SingleItemDecoration(resources.getDimension(R.dimen.movie_space).toInt()))
@@ -36,14 +36,7 @@ class ListFragment : Fragment(R.layout.fragment_list), ItemClickListener {
 
         viewModel.popularList.observe(viewLifecycleOwner) { list ->
             list?.let {
-                movieListAdapter.itemList = list
-                movieListAdapter.notifyDataSetChanged()
-            }
-        }
-
-        viewModel.genreList.observe(viewLifecycleOwner) {list ->
-            list?.let {
-                movieListAdapter.genreList = list
+                movieListAdapter.itemList = it
                 movieListAdapter.notifyDataSetChanged()
             }
         }

@@ -23,7 +23,7 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/movie_name"
+            android:id="@+id/movie_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -43,8 +43,8 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/movie_genres"
-            app:layout_constraintStart_toStartOf="@id/movie_name"
-            app:layout_constraintTop_toBottomOf="@+id/movie_name"
+            app:layout_constraintStart_toStartOf="@id/movie_title"
+            app:layout_constraintTop_toBottomOf="@+id/movie_title"
             tools:text="4.3" />
 
         <TextView
@@ -58,7 +58,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@id/movie_rating"
             app:layout_constraintTop_toBottomOf="@+id/movie_rating"
-            tools:text="Horror, Family, Drama" />
+            tools:text="History, Family, Comedy" />
 
         <me.zhanghai.android.materialratingbar.MaterialRatingBar
             android:id="@+id/movie_rating_bar"

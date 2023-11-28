@@ -11,9 +11,11 @@ import com.orhanavan.mymovieexplorer.data.request.PopularRequest
 import com.orhanavan.mymovieexplorer.domain.implementation.NetworkImplementation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import okhttp3.internal.wait
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,22 +31,23 @@ class ListViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            runBlocking {
-                doGenreRequest()
-                doPopularRequest()
+            val genreResponse = networkImplementation.getGenre(GenreRequest())
+            _genreList.postValue(genreResponse.genres)
+        }
+
+        viewModelScope.launch {
+            val popularResponse = networkImplementation.getPopular(PopularRequest())
+
+            for (movie in popularResponse.results) {
+                movie.genres = getGenreNamesByIds(movie.genreIds)
             }
+
+            _popularList.postValue(popularResponse.results)
         }
     }
 
-    private suspend fun doGenreRequest() = withContext(Dispatchers.IO) {
-        val response = networkImplementation.getGenre(GenreRequest())
-        _genreList.postValue(response.genres)
-        return@withContext
-    }
-
-    private suspend fun doPopularRequest() = withContext(Dispatchers.IO) {
-        val response = networkImplementation.getPopular(PopularRequest())
-        _popularList.postValue(response.results)
-        return@withContext
+    private fun getGenreNamesByIds(ids: List<Int>): String {
+        val selectedGenres = _genreList.value?.filter { it.id in ids }
+        return selectedGenres?.joinToString(separator = ", ") { it.name } ?: "Unknown"
     }
 }
