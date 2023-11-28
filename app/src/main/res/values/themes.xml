@@ -1,9 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MyMovieExplorer" parent="Theme.Material3.DayNight">
+<resources>
+    <style name="Base.Theme.MyMovieExplorer" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:fontFamily">@font/nunito</item>
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor" >@android:color/transparent</item>
+        <item name="android:navigationBarColor" >@android:color/transparent</item>
     </style>
 
     <style name="Theme.MyMovieExplorer" parent="Base.Theme.MyMovieExplorer" />
