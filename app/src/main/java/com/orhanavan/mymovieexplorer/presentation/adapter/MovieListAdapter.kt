@@ -7,13 +7,15 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.orhanavan.mymovieexplorer.BuildConfig
 import com.orhanavan.mymovieexplorer.R
-import com.orhanavan.mymovieexplorer.data.response.Popular
+import com.orhanavan.mymovieexplorer.data.model.Genre
+import com.orhanavan.mymovieexplorer.data.model.Movie
 import com.orhanavan.mymovieexplorer.databinding.ItemMovieBinding
 import com.orhanavan.mymovieexplorer.util.formatRating
 import com.orhanavan.mymovieexplorer.util.formatStar
 
 class MovieListAdapter(
-    private val itemList: List<Popular>
+    var itemList: List<Movie> = emptyList(),
+    var genreList: List<Genre> = emptyList()
 ): RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>() {
 
     inner class MovieViewHolder(val binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root)
@@ -43,7 +45,11 @@ class MovieListAdapter(
         }
         holder.binding.movieRating.text = item.voteAverage.formatRating()
         holder.binding.movieRatingBar.rating = item.voteAverage.formatStar()
-
+        holder.binding.movieGenres.text = getGenreNamesByIds(item.genreIds)
     }
 
+    private fun getGenreNamesByIds(ids: List<Int>): String {
+        val selectedGenres = genreList.filter { it.id in ids }
+        return selectedGenres.joinToString(separator = ", ") { it.name }
+    }
 }

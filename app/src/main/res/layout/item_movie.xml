@@ -17,43 +17,58 @@
             android:layout_width="60dp"
             android:layout_height="90dp"
             android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@tools:sample/avatars"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/movie_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:ellipsize="end"
             android:layout_marginStart="16dp"
-            app:layout_constraintStart_toEndOf="@id/movie_image"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintBottom_toTopOf="@+id/movie_rating"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@tools:sample/lorem/random"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/movie_image"
+            app:layout_constraintTop_toTopOf="@id/movie_image"
+            tools:ignore="MissingConstraints"
+            tools:text="@tools:sample/lorem/random" />
 
         <TextView
             android:id="@+id/movie_rating"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/movie_name"
+            app:layout_constraintBottom_toTopOf="@+id/movie_genres"
             app:layout_constraintStart_toStartOf="@id/movie_name"
+            app:layout_constraintTop_toBottomOf="@+id/movie_name"
             tools:text="4.3" />
 
+        <TextView
+            android:id="@+id/movie_genres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/movie_rating"
+            app:layout_constraintTop_toBottomOf="@+id/movie_rating"
+            tools:text="Horror, Family, Drama" />
 
         <me.zhanghai.android.materialratingbar.MaterialRatingBar
             android:id="@+id/movie_rating_bar"
+            style="@style/Widget.MaterialRatingBar.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:isIndicator="true"
-            style="@style/Widget.MaterialRatingBar.RatingBar"
+            app:layout_constraintBottom_toBottomOf="@id/movie_rating"
             app:layout_constraintStart_toEndOf="@id/movie_rating"
-            app:layout_constraintTop_toTopOf="@id/movie_rating"
-            app:layout_constraintBottom_toBottomOf="@id/movie_rating" />
+            app:layout_constraintTop_toTopOf="@id/movie_rating" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

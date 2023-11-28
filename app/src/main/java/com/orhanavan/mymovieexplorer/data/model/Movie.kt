@@ -1,8 +1,8 @@
-package com.orhanavan.mymovieexplorer.data.response
+package com.orhanavan.mymovieexplorer.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Popular(
+data class Movie(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,

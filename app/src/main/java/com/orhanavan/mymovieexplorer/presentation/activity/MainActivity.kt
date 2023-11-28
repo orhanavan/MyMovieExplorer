@@ -1,5 +1,6 @@
 package com.orhanavan.mymovieexplorer.presentation.activity
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -17,19 +18,29 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val viewModel: MainViewModel by viewModels()
     private val binding by viewBinding<ActivityMainBinding>()
-
+    private val movieListAdapter = MovieListAdapter()
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = movieListAdapter
+            addItemDecoration(SingleItemDecoration(resources.getDimension(R.dimen.movie_space).toInt()))
+        }
+
         viewModel.popularList.observe(this) { list ->
             list?.let {
-                binding.recyclerView.apply {
-                    layoutManager = LinearLayoutManager(this@MainActivity)
-                    adapter = MovieListAdapter(it)
-                    addItemDecoration(SingleItemDecoration(resources.getDimension(R.dimen.movie_space).toInt()))
-                }
+                movieListAdapter.itemList = list
+                movieListAdapter.notifyDataSetChanged()
             }
+        }
 
+        viewModel.genreList.observe(this) {list ->
+            list?.let {
+                movieListAdapter.genreList = list
+                movieListAdapter.notifyDataSetChanged()
+            }
         }
 
     }

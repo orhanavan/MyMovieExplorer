@@ -1,15 +1,12 @@
 package com.orhanavan.mymovieexplorer.di
 
-import android.content.Context
 import com.orhanavan.mymovieexplorer.BuildConfig
 import com.orhanavan.mymovieexplorer.data.NetworkApi
-import com.orhanavan.mymovieexplorer.domain.NetworkHelperImplementation
-import com.orhanavan.mymovieexplorer.domain.NetworkImplementation
-import com.orhanavan.mymovieexplorer.domain.NetworkRepository
+import com.orhanavan.mymovieexplorer.domain.implementation.NetworkImplementation
+import com.orhanavan.mymovieexplorer.domain.repository.NetworkRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -76,9 +73,4 @@ object NetworkModule {
         return NetworkImplementation(networkApi)
     }
 
-    @Singleton
-    @Provides
-    fun provideNetworkHelper(@ApplicationContext context: Context): NetworkHelperImplementation {
-        return NetworkHelperImplementation(context)
-    }
 }
