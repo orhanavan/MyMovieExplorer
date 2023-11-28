@@ -21,4 +21,4 @@ Bu Kotlin tabanlı Android uygulaması, The Movie Database'in güçlü web servi
 - [Retrofit]() Network Kütüphanesi
 
 ## Screenshots
-<img src="images/1.jpeg" width = "200px" /> <img src="images/2.jpeg" width = "200px"/>
+<img src="images/1.png" width = "200px" /> <img src="images/2.png" width = "200px"/>
